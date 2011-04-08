@@ -43,9 +43,6 @@ class SetStatus(models.Model):
                    )
     content_object = GenericForeignKey()
 
-    # user that modified this record.
-    modified_by = models.ForeignKey(User)
-
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
                             
@@ -58,7 +55,13 @@ class SetStatus(models.Model):
         return self.start_at < now and now < self.end_at
     active.boolean = True
 
-
     class Meta:
         verbose_name = _("Status")
         verbose_name_plural = _("Statuses")
+
+    def __unicode__(self):
+        isactive = '' if self.active() else 'not '
+        return (u"%s for %s, %sactive" %
+                        (self.get_status_display(),
+                         self.content_object,
+                         isactive))
