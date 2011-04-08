@@ -4,7 +4,7 @@ setup(
     name='django-setstatus',
     version='0.1.0',
     description='a generic way to set time limited statuses to objects in Django',
-    long_description=open('README').read(),
+    long_description=open('README.rst').read(),
     author='Jervis Whitley',
     author_email='jervisw@whit.com.au',
     url='http://github.com/jtrain/django-setstatus/tree/master',
